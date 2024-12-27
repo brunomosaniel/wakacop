@@ -9,5 +9,4 @@ public class WakacopApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WakacopApplication.class, args);
 	}
-
 }
