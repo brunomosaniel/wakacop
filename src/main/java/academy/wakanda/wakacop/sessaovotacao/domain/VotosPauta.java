@@ -1,6 +1,5 @@
 package academy.wakanda.wakacop.sessaovotacao.domain;
 
-import academy.wakanda.wakacop.pauta.domain.Pauta;
 import academy.wakanda.wakacop.pauta.domain.application.api.VotoRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -16,6 +15,7 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class VotosPauta {
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "uuid", updatable = false, unique = true, nullable = false)
     private UUID id;
@@ -31,5 +31,13 @@ public class VotosPauta {
         this.cpfAssociado = votoRequest.getCpfAssociado();
         this.opcaoVoto = votoRequest.getOpcaoVoto();
         this.momentoVoto = LocalDateTime.now();
+    }
+
+    public UUID getIdSessao() {
+        return this.sessaoVotacao.getId();
+    }
+
+    public boolean opcaoIgual(OpcaoVoto opcao) {
+        return this.opcaoVoto.equals(opcao);
     }
 }
